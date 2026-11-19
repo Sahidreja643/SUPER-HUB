@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100d1d">
+  <meta name="description" content="SUPER HUB - Everything in One Place">
+  <title>SUPER HUB 👑</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+
+    <header class="top-header">
+      <div class="brand">
+        <div class="brand-logo">👑</div>
+        <div>
+          <h1>SUPER HUB</h1>
+          <p>Everything in One Place</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="languageBtn" class="header-btn">বাংলা</button>
+        <button class="header-btn" id="notificationBtn">🔔</button>
+      </div>
+    </header>
+
+    <main>
+
+      <section class="welcome-card">
+        <div>
+          <p id="welcomeText">স্বাগতম!</p>
+          <h2 id="userName">SUPER HUB ব্যবহারকারী</h2>
+          <p>Learn • Create • Connect • Enjoy</p>
+        </div>
+        <div class="welcome-icon">✨</div>
+      </section>
+
+      <section class="search-section">
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Search anything..."
+          autocomplete="off"
+        >
+        <button id="searchBtn">⌕</button>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <h2 id="categoryTitle">Explore Categories</h2>
+          <span>12+</span>
+        </div>
+
+        <div class="category-grid" id="categoryGrid">
+
+          <button class="category-card" data-category="ai">
+            <span>🤖</span>
+            <b>AI Studio</b>
+          </button>
+
+          <button class="category-card" data-category="social">
+            <span>🌐</span>
+            <b>Social</b>
+          </button>
+
+          <button class="category-card" data-category="community">
+            <span>👥</span>
+            <b>Community</b>
+          </button>
+
+          <button class="category-card" data-category="love">
+            <span>❤️</span>
+            <b>Love & Status</b>
+          </button>
+
+          <button class="category-card" data-category="islamic">
+            <span>🕌</span>
+            <b>Islamic</b>
+          </button>
+
+          <button class="category-card" data-category="learn">
+            <span>📚</span>
+            <b>Learn & Earn</b>
+          </button>
+
+          <button class="category-card" data-category="quiz">
+            <span>🧠</span>
+            <b>Quiz Zone</b>
+          </button>
+
+          <button class="category-card" data-category="video">
+            <span>🎬</span>
+            <b>Entertainment</b>
+          </button>
+
+          <button class="category-card" data-category="tools">
+            <span>🛠️</span>
+            <b>Smart Tools</b>
+          </button>
+
+          <button class="category-card" data-category="profile">
+            <span>👤</span>
+            <b>My Profile</b>
+          </button>
+
+          <button class="category-card" data-category="premium">
+            <span>💎</span>
+            <b>Premium</b>
+          </button>
+
+          <button class="category-card" data-category="admin">
+            <span>⚙️</span>
+            <b>Admin</b>
+          </button>
+
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <h2 id="trendingTitle">🔥 Trending Today</h2>
+        </div>
+
+        <div id="trendingContent" class="content-card">
+          <div class="empty-icon">🌟</div>
+          <h3>Discover Something New</h3>
+          <p>নতুন কনটেন্ট খুব শীঘ্রই আসছে।</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <h2 id="dailyTitle">🎯 Daily Challenge</h2>
+        </div>
+
+        <div class="challenge-card">
+          <h3>আজকের চ্যালেঞ্জ</h3>
+          <p>প্রতিদিন নতুন কিছু শিখুন এবং নিজের জ্ঞান বাড়ান।</p>
+          <button id="quizBtn" class="primary-btn">
+            Start Challenge
+          </button>
+        </div>
+      </section>
+
+    </main>
+
+    <nav class="bottom-nav">
+
+      <button class="nav-item active" data-page="home">
+        <span>🏠</span>
+        <small>Home</small>
+      </button>
+
+      <button class="nav-item" data-page="explore">
+        <span>🔎</span>
+        <small>Explore</small>
+      </button>
+
+      <button class="nav-item create-nav" data-page="create">
+        <span>✨</span>
+        <small>Create</small>
+      </button>
+
+      <button class="nav-item" data-page="community">
+        <span>👥</span>
+        <small>Community</small>
+      </button>
+
+      <button class="nav-item" data-page="profile">
+        <span>👤</span>
+        <small>Profile</small>
+      </button>
+
+    </nav>
+
+    <div id="toast" class="toast"></div>
+
+  </div>
+
+  <script type="module" src="app.js"></script>
+
+</body>
+  </html>
+  
