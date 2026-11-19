@@ -1,19 +1,16 @@
 
-import { supabase } from "./database.js";
-
-// Supabase সেটআপ পরীক্ষা
-function checkDatabase() {
-  if (!supabase) {
-    throw new Error(
-      "Supabase configuration missing. Please check config.js"
-    );
-  }
-}
+import { supabase } from "./js/database.js";
 
 // নতুন অ্যাকাউন্ট তৈরি
 export async function signUp(email, password, displayName) {
   try {
-    checkDatabase();
+    if (!supabase) {
+      throw new Error("Supabase is not configured");
+    }
+
+    if (!email || !password || !displayName) {
+      throw new Error("সব তথ্য পূরণ করুন");
+    }
 
     const { data, error } = await supabase.auth.signUp({
       email: email.trim(),
@@ -36,16 +33,17 @@ export async function signUp(email, password, displayName) {
   } catch (error) {
     return {
       success: false,
-      data: null,
       message: error.message
     };
   }
 }
 
-// অ্যাকাউন্টে লগইন
+// লগইন
 export async function signIn(email, password) {
   try {
-    checkDatabase();
+    if (!supabase) {
+      throw new Error("Supabase is not configured");
+    }
 
     const { data, error } =
       await supabase.auth.signInWithPassword({
@@ -64,7 +62,6 @@ export async function signIn(email, password) {
   } catch (error) {
     return {
       success: false,
-      data: null,
       message: error.message
     };
   }
@@ -73,7 +70,9 @@ export async function signIn(email, password) {
 // লগআউট
 export async function signOut() {
   try {
-    checkDatabase();
+    if (!supabase) {
+      throw new Error("Supabase is not configured");
+    }
 
     const { error } = await supabase.auth.signOut();
 
@@ -92,10 +91,10 @@ export async function signOut() {
   }
 }
 
-// বর্তমানে লগইন করা ব্যবহারকারী
+// বর্তমানে লগইন করা ইউজার
 export async function getCurrentUser() {
   try {
-    checkDatabase();
+    if (!supabase) return null;
 
     const { data, error } = await supabase.auth.getUser();
 
@@ -104,28 +103,20 @@ export async function getCurrentUser() {
     return data.user;
 
   } catch (error) {
-    console.error("User check error:", error.message);
+    console.error("User error:", error.message);
     return null;
   }
 }
 
 // লগইন পরিবর্তন পর্যবেক্ষণ
 export function listenAuthChanges(callback) {
-  try {
-    checkDatabase();
+  if (!supabase) return null;
 
-    const {
-      data: { subscription }
-    } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        callback(event, session);
-      }
-    );
+  const { data } = supabase.auth.onAuthStateChange(
+    (event, session) => {
+      callback(event, session);
+    }
+  );
 
-    return subscription;
-
-  } catch (error) {
-    console.error("Auth listener error:", error.message);
-    return null;
-  }
-      }
+  return data.subscription;
+}
