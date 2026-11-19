@@ -1,5 +1,5 @@
 
-import { supabase } from "./js/database.js";
+import { supabase } from "./database.js";
 
 // নতুন অ্যাকাউন্ট তৈরি
 export async function signUp(email, password, displayName) {
@@ -29,7 +29,6 @@ export async function signUp(email, password, displayName) {
       data,
       message: "Account created successfully"
     };
-
   } catch (error) {
     return {
       success: false,
@@ -45,6 +44,10 @@ export async function signIn(email, password) {
       throw new Error("Supabase is not configured");
     }
 
+    if (!email || !password) {
+      throw new Error("ইমেইল ও পাসওয়ার্ড দিন");
+    }
+
     const { data, error } =
       await supabase.auth.signInWithPassword({
         email: email.trim(),
@@ -58,7 +61,6 @@ export async function signIn(email, password) {
       data,
       message: "Login successful"
     };
-
   } catch (error) {
     return {
       success: false,
@@ -82,7 +84,6 @@ export async function signOut() {
       success: true,
       message: "Logout successful"
     };
-
   } catch (error) {
     return {
       success: false,
@@ -91,7 +92,7 @@ export async function signOut() {
   }
 }
 
-// বর্তমানে লগইন করা ইউজার
+// বর্তমানে লগইন করা ব্যবহারকারী
 export async function getCurrentUser() {
   try {
     if (!supabase) return null;
@@ -101,7 +102,6 @@ export async function getCurrentUser() {
     if (error) throw error;
 
     return data.user;
-
   } catch (error) {
     console.error("User error:", error.message);
     return null;
@@ -119,4 +119,5 @@ export function listenAuthChanges(callback) {
   );
 
   return data.subscription;
-}
+  }
+  
