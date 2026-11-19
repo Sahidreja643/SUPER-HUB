@@ -1,7 +1,7 @@
 
 export const SUPABASE_CONFIG = {
-  URL: "YOUR_SUPABASE_PROJECT_URL",
-  KEY: "YOUR_SUPABASE_PUBLISHABLE_KEY"
+  URL: "https://xcbezhomtqnwrbhonwgu.supabase.co",
+  KEY: "sb_publishable_cla-OecF7u1pa30Rf5M9gg_LQQ_7ERR"
 };
 
 export const APP_CONFIG = {
