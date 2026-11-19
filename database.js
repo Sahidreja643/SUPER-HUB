@@ -2,17 +2,17 @@
 import { createClient } from
   "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-import { SUPABASE_CONFIG } from "../config.js";
+import { SUPABASE_CONFIG } from "./config.js";
 
 const projectUrl = SUPABASE_CONFIG.URL;
 const publishableKey = SUPABASE_CONFIG.KEY;
 
 const isConfigured =
-  projectUrl &&
+  typeof projectUrl === "string" &&
   projectUrl.startsWith("https://") &&
   !projectUrl.includes("YOUR_") &&
-  publishableKey &&
-  !publishableKey.includes("YOUR_");
+  typeof publishableKey === "string" &&
+  publishableKey.startsWith("sb_publishable_");
 
 export const supabase = isConfigured
   ? createClient(projectUrl, publishableKey, {
